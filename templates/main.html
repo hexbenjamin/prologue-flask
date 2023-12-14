@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div id="fullpage">
+    {% for row in grid.values() %}
+    <div class="section">
+        {% for img in row %}
+        {% if img != "" %}
+        <div class="slide">
+            <img src="{{ url_for('static', filename='images/' ~ img) }}" class="frame"
+                alt="A framed painting or something." />
+        </div>
+        {% else %}
+        <div class="slide"></div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+    new fullpage('#fullpage', {
+        autoScrolling: true,
+        scrollHorizontally: true,
+        scrollOverflow: false,
+        controlArrows: true,
+        sectionsColor: ['transparent'],
+    });
+</script>
+
+{% endblock %}
